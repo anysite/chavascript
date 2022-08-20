@@ -129,6 +129,7 @@ const classifiedDictionary = {
         "Map": "מפה",
         "Promise": "הבטחה",
         "Math": "חשבון",
+        "document":"מסמך" 
     },
     "console": {
         "error": "שגיאה",
@@ -138,6 +139,10 @@ const classifiedDictionary = {
         "info": "מידע",
         "trace": "עקבות",
         "warn": "הזהר",
+    },
+    "document":{
+        "createElement":"צור_איבר",
+        "querySelector": "בחר_על_ידי_שאילתא"
     },
     "json": {
         "stringify": "מחרז",
