@@ -128,8 +128,7 @@ const classifiedDictionary = {
         "Set": "קבוצה",
         "Map": "מפה",
         "Promise": "הבטחה",
-        "Math": "חשבון",
-        "document":"מסמך" 
+        "Math": "חשבון"
     },
     "console": {
         "error": "שגיאה",
@@ -146,7 +145,7 @@ const classifiedDictionary = {
     },
     "json": {
         "stringify": "מחרז",
-        "parse": "פענח",
+        "parse": "פענח"
     },
     "promise": {
         "reject": "הפר",

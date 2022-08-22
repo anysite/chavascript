@@ -33,6 +33,7 @@ const documentationClassifiers = {
     "math": "שיטות חשבון",
     "console": "שיטות בקרה",
     "json": "שיטות פנחס",
+    "document": "שיטות מסמך",
 };
 
 const documentationComments = {
