@@ -12,9 +12,11 @@
   "license": "MIT",
   "scripts": {
     "clean": "rm -rf dist",
-    "build": "rollup -c rollup.config.js",
+    "build": "rollup -c rollup.config.js && npm run copy-to-docs && cd docs && npm run build",
     "clean-build": "npm run clean && npm run build",
-    "prepublish": "npm run clean-build"
+    "prepublish": "npm run clean-build",
+    "copy-to-docs" : "cp dist/* docs/node_modules/chavascript/dist",
+    "serve":"http-server docs -p 8081 "
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
@@ -22,6 +24,7 @@
     "rollup-plugin-buble": "^0.16.0"
   },
   "dependencies": {
-    "escodegen": "^1.14.3"
+    "escodegen": "^1.14.3",
+    "http-server": "^14.1.1"
   }
 }

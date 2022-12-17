@@ -35,6 +35,7 @@ export {localizedKeyword, translateIdentifier, localizedIdentifier} from "./loca
 import * as ls from "./localization_settings"
 export const localizationSettings = ls
 export {ChavascriptBabelPlugin} from './babel-plugin';
+import chavaConstants from './chava-constants';
 
 export const version = "6.1.1"
 
@@ -62,4 +63,8 @@ export function parseExpressionAt(input, pos, options) {
 
 export function tokenizer(input, options) {
   return Parser.tokenizer(input, options)
+}
+//if window is defined, add chavaConstans to window
+if (typeof window !== 'undefined') {
+  window.chavaConstants = chavaConstants;
 }
