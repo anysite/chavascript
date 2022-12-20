@@ -208,18 +208,23 @@ function buildEditor(element, code, onExecute) {
             console = {
                 log() {
                     lines.push(`<span class="console-log">${Array.from(arguments).join(", ")}</span>`);
+                    originalConsole.log.apply(originalConsole, arguments);
                 },
                 warn() {
                     lines.push(`<span class="console-warn">${Array.from(arguments).join(", ")}</span>`);
+                    originalConsole.warn.apply(originalConsole, arguments);
                 },
                 error() {
                     lines.push(`<span class="console-error">${Array.from(arguments).join(", ")}</span>`);
+                    originalConsole.error.apply(originalConsole, arguments);
                 },
                 debug() {
                     lines.push(`<span class="console-debug">${Array.from(arguments).join(", ")}</span>`);
+                    originalConsole.debug.apply(originalConsole, arguments);
                 },
                 trace() {
                     lines.push(`<span class="console-trace">${Array.from(arguments).join(", ")}</span>`);
+                    originalConsole.trace.apply(originalConsole, arguments);
                 }
             };
             eval(code);

@@ -43,6 +43,58 @@
             }
             firstLoad = false;
             editor.focus();
+            // init saved-code select from local storage entries starting with "saved-code-"
+            var savedCodeSelect = document.getElementById("saved-code-select");
+            for (var i = 0; i < localStorage.length; i++) {
+                var key = localStorage.key(i);
+                if (key.startsWith("saved-code-")) {
+                    var option = document.createElement("option");
+                    option.value = key;
+                    option.text = key.substr("saved-code-".length);
+                    savedCodeSelect.add(option);
+                }
+            }
+            //edit save-code-name input when load-code clicked
+            document.getElementById("load-code").addEventListener("click", function () {
+                var key = savedCodeSelect.value;
+                if (key) {
+                    var code = localStorage.getItem(key);
+                    editor.setValue(code);
+                    editor.focus();
+                    //update save-code-name input
+                    document.getElementById("save-code-name").value = key.substr("saved-code-".length);
+                    //update hash
+                    const hash = "#" + encodeURIComponent(code);
+                }
+                else {
+                    //reset save-code-name input and hash and editor
+                    document.getElementById("save-code-name").value = "";
+                    editor.setValue("");
+                    //editor.focus();
+                    const hash = "";
+
+                }
+            });
+            //save code when save-code clicked
+            document.getElementById("save-code").addEventListener("click", function () {
+                var name = document.getElementById("save-code-name").value;
+                //if name empty, alert and return
+                if (!name) {
+                    alert("שם הקוד לא יכול להיות ריק");
+                    return;
+                }
+                var code = editor.getValue();
+                var key = "saved-code-" + name;
+                localStorage.setItem(key, code);
+                //update saved-code select
+                var option = document.createElement("option");
+                option.value = key;
+                option.text = name;
+                savedCodeSelect.add(option);
+                savedCodeSelect.value = key;
+                //update hash
+                const hash = "#" + encodeURIComponent(code);
+            });
         });
     </script>
 </head>
@@ -97,6 +149,15 @@
                 בעמוד זה ניתן להשתעשע עם חווה סקריפט. לערוך, ולבקש שאמיר ואריץ את הקוד הכתוב.
             </p>
             <div id="playground-editor">playground</div>
+            <p>
+                <select id="saved-code-select">
+                    <option value="">בחר קוד מהרשימה</option>
+                </select>
+
+                <button id="load-code">טען קוד</button>
+                <input type="text" id="save-code-name" placeholder="שם הקוד">
+                <button id="save-code">שמור קוד</button>
+            </p>
             <blockquote>
                 שימו לב שבכל פעם שתבקשו שאריץ את הקוד, כתובת האתר תייצג את הקוד שהורץ, כך שניתן יהיה להעתיק אותו כקישור
                 ולשתף קוד בקלות עם עמיתים.
